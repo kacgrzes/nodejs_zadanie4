@@ -1,14 +1,15 @@
 var fs = require('fs');
 
 fs.readdir('./', function(err, files) {
-    if (err) throw err;
-    var zawartoscKataloguTekst = '';
-    for ( var x=0; x < files.length; x++ ) {
-    	if ( files[x] === 'zawartosc_katalogu.txt' ) continue;
-    	zawartoscKataloguTekst += files[x] + '\n';
+    if (err) {
+		console.error(err);
+		return false;
     }
-    fs.writeFile('./zawartosc_katalogu.txt', zawartoscKataloguTekst, function(err) {
-        if (err) throw err;
+    fs.writeFile('./zawartosc_katalogu.txt', files.join("\n"), function(err) {
+        if (err) {
+			console.error(err);
+			return false;
+	    }
         console.log('Plik zapisany');
     });
 
@@ -26,7 +27,7 @@ fs.readdir('./', function(err, files) {
         
     }*/
 
-    //kopiowanie poniżej (niezgodne z zadaniem)
+    //kopiowanie (niezgodne z zadaniem)
     /*files.forEach(function(file) {
         var fileArr = file.split('.');
         var fileName = fileArr[0] + '_copy.' + fileArr[1];
